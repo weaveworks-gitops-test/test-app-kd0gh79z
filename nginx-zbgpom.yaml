@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-zbgpom
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-zbgpom
+  namespace: my-nginx-zbgpom
+  labels:
+    name: nginx-zbgpom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-zbgpom
+  template:
+    metadata:
+      namespace: my-nginx-zbgpom
+      labels:
+        name: nginx-zbgpom
+    spec:
+      containers:
+      - name: nginx-zbgpom
+        image: nginx
+        ports:
+        - containerPort: 80
+
